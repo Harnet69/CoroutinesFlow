@@ -1,5 +1,6 @@
 package com.harnet.coroutinesflow.view
 
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -34,6 +35,7 @@ class ArticlesFragment : Fragment() {
     private fun observeModel(){
         viewModel.mArticlesList.observe(viewLifecycleOwner, Observer { articles ->
             Log.i("ArticlesShowing", "observeModel: $articles")
+            recyclerView.setBackgroundColor(Color.CYAN)
         })
 
         viewModel.mIsLoading.observe(viewLifecycleOwner, Observer {
