@@ -11,7 +11,6 @@ import com.harnet.coroutinesflow.model.Article
 class ArticlesAdapter(private val articlesList: ArrayList<Article>) :
     RecyclerView.Adapter<ArticlesAdapter.ArticlesViewHolder>() {
 
-    //for updating information from a backend
     fun updateArticlesList(newArticlesList: List<Article>) {
         articlesList.clear()
         articlesList.addAll(newArticlesList)
