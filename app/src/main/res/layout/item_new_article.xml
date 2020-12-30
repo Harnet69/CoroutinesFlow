@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="article"
+            type="com.harnet.coroutinesflow.model.Article" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        style="@style/NewsArticle.View"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/card_elevation">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_list_item">
+            <!--  News block  -->
+            <RelativeLayout
+                android:id="@+id/newsImageView"
+                android:layout_width="match_parent"
+                android:layout_height="180sp"
+                android:background="@drawable/tools_placeholder">
+
+                <ImageView
+                    android:id="@+id/newsImage"
+                    style="@style/NewsArticle.Image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/image_size"
+                    android:contentDescription="@string/news_image"
+                    android:bindImageUrl="@{article.urlToImage}"
+                    />
+
+                <TextView
+                    android:id="@+id/newsAuthor"
+                    style="@style/NewsArticle.Author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    tools:text="@{article.author}" />
+            </RelativeLayout>
+            <!--  News Title  -->
+            <TextView
+                android:id="@+id/newsTitle"
+                style="@style/NewsArticle.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/newsImageView"
+                android:text="@{article.title}"/>
+            <!--  Publish at  -->
+            <TextView
+                android:id="@+id/newsPublishedAt"
+                style="@style/NewsArticle.PublishedAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/newsTitle"
+                android:layout_marginStart="@dimen/normal_padding"
+                android:layout_marginLeft="@dimen/normal_padding"
+                android:text="@{article.publishedAt}"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

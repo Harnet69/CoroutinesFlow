@@ -32,7 +32,8 @@ class ArticlesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         articlesAdapter = ArticlesAdapter(arrayListOf())
 
-        viewModel.refresh()
+        //TODO how trigger it?
+//        viewModel.refresh()
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
@@ -51,26 +52,29 @@ class ArticlesFragment : Fragment() {
     }
 
     private fun observeModel(){
-        viewModel.mArticlesList.observe(viewLifecycleOwner, Observer { articles ->
-            articles?.let {
-                if(it.isNotEmpty()){
-                    articlesAdapter.updateArticlesList(articles)
+        viewModel.mArticlesList.observe(viewLifecycleOwner, Observer {
+            it?.let {
+//                if(it.isNotEmpty()){
+//                    articlesAdapter.updateArticlesList(articles)
+                    articlesAdapter.onAddNewsItem(it)
                     recyclerView.setBackgroundColor(Color.CYAN)
                     recyclerView.visibility = View.VISIBLE
-                }
+                    progressBar.visibility = View.INVISIBLE
+                    recyclerView.smoothScrollToPosition(0)
+//                }
 
             }
         })
 
-        viewModel.mIsLoading.observe(viewLifecycleOwner, Observer {
-            if(it) {
-                recyclerView.visibility = View.INVISIBLE
-                progressBar.visibility = View.VISIBLE
-            }
-            else {
-                recyclerView.visibility = View.VISIBLE
-                progressBar.visibility = View.INVISIBLE
-            }
-        })
+//        viewModel.mIsLoading.observe(viewLifecycleOwner, Observer {
+//            if(it) {
+//                recyclerView.visibility = View.INVISIBLE
+//                progressBar.visibility = View.VISIBLE
+//            }
+//            else {
+//                recyclerView.visibility = View.VISIBLE
+//                progressBar.visibility = View.INVISIBLE
+//            }
+//        })
     }
 }
